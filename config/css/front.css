@@ -44,8 +44,11 @@ div[class^='gradient']{
     height: 100%;
     object-fit: cover;
 }
-.image-prdct{
+.con-img-pro{
     width: 100%;
-    height: 200px;
-    background-color: aqua;
+    height: 50%;
+}
+.card{
+    max-width: 16%;
+    max-height: 5%;
 }
