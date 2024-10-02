@@ -51,19 +51,35 @@
         </div>
         <div class="product mt-5">
             <h1 class=""># Product</h1>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-3 row-cols-xxl-4 g-4">
                 <?php
                 include "config/koneksi.php";
                 $sql = mysqli_query($koneks, "select*from produk");
                 while ($tampil = mysqli_fetch_array($sql)) {
                     ?>
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($tampil['image']) . '" class="card-image-top" alt="Photo product"/>'; ?>
+                    <div class="col col-sm-1">
+                        <div class="card bg-black text-white border border-white w-75">
+                            <div class="image-prdct">
+                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($tampil['image']) . '" class="img-pro card-image-top" alt="Photo product"/>'; ?>
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                    to additional content. This content is a little bit longer.</p>
+                                <p class="card-title text-center fs-3"><?php echo $tampil['namaproduk'] ?></p>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="fs-4 fw-bold">
+                                            <?php echo "Rp." . number_format($tampil['hargaproduk'], "0", ",", "."); ?>
+                                        </p>
+                                    </div>
+                                    <div class="col align-middle">
+                                        <p class="text-end fst-italic">
+                                            <?php echo "stock available : " . $tampil['stok'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="btn-buy w-100 d-grid ">
+                                    <a href="#" class="btn btn-outline-light">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
