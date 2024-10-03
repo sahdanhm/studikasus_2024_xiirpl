@@ -15,3 +15,17 @@ if (isset($_POST['btambah'])) {
     $_SESSION['krj'][] = $produk;
     header('location:index.php?link=transaction');
 }
+if (isset($_POST['baddcart'])) {
+    $idproduk = $_POST['produk'];
+    $jml = $_POST['cart-amount'];
+    $qry = mysqli_query($koneks, "select * from produk where idproduk='$idproduk'");
+    $row = mysqli_fetch_assoc($qry);
+    $produk = [
+        'id' => $row['idproduk'],
+        'name' => $row['namaproduk'],
+        'price' => $row['hargaproduk'],
+        'qty' => $jml,
+    ];
+    $_SESSION['krj'][] = $produk;
+    header('location:index.php?link=transaction');
+}

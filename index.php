@@ -81,6 +81,10 @@
       }
       prevScrollpos = currentScrollPos;
     }
+
+  document.getElementById('cart').addEventListener("click", ()=>{
+    
+  })
   </script>
 </body>
 

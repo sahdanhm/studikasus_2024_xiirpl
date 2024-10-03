@@ -52,3 +52,7 @@ div[class^='gradient']{
     max-width: 16%;
     max-height: 5%;
 }
+.cart-btn{
+    background-color: transparent;
+    border: none;
+}
