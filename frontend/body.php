@@ -75,56 +75,44 @@
                             </p>
 
 
-                            <div class="btn-buy w-100 d-flex align-items-center">
-                                <form action="cart.php" method="post">
-                                    <a href="#" class="btn btn-outline-light">Buy Now</a>
+                            <div class="">
 
-                                    <input type="text" name="produk" value="<?php echo $tampil['idproduk']; ?>" id="produk"
-                                        hidden>
-                                    <input type="number" name="jml" value="1" id="jml" hidden>
-                                    <a class="ms-auto rounded-circle " style="width:fit-content;padding:5%;" id="cart"
-                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"><svg
-                                            xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                            width="24px" fill="#FFFFFF">
-                                            <path
-                                                d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
-                                        </svg></a>
-                                </form>
+                                <button href="#" class="btn btn-outline-light">Buy Now</button>
+
+
+                                <a class="btn ms-auto rounded-circle cart-btn" style="width: fit-content; padding:5%;"
+                                    onclick="jmlCart('<?php echo $tampil['idproduk']; ?>')" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><svg
+                                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                        width="24px" fill="#FFFFFF">
+                                        <path
+                                            d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
+                                    </svg></a>
+
 
 
                             </div>
                         </div>
                     </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade text-black" id="staticBackdrop" data-bs-backdrop="static"
-                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Cart</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <form action="cart.php" method="post">
-                                    <div class="modal-body">
-                                        <input type="text" name="produk" value="<?php echo $tampil['idproduk']; ?>"
-                                            id="produk" name="produk">
-                                        <label for="form-label cart-amount">Input the amount:</label>
-                                        <input class="form-control" type="number" name="cart-amount" id="cart-amount"
-                                            value="1">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Add to cart</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 <?php } ?>
+            </div>
+        </div>
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form action="content/cart.php" method="post">
+                    <input type="text" id="produk" name="produk" hidden>
+                    <label for="jml" class="form-label">Amount</label>
+                    <input type="text" name="jml" id="jml" class="form-control">
+                    <button type="submit" name="baddcart" class="btn btn-primary">Submit</button>
+                </form>
+
             </div>
         </div>
     </div>

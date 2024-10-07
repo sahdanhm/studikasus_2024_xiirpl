@@ -17,7 +17,7 @@ if (isset($_POST['btambah'])) {
 }
 if (isset($_POST['baddcart'])) {
     $idproduk = $_POST['produk'];
-    $jml = $_POST['cart-amount'];
+    $jml = $_POST['jml'];
     $qry = mysqli_query($koneks, "select * from produk where idproduk='$idproduk'");
     $row = mysqli_fetch_assoc($qry);
     $produk = [
@@ -27,5 +27,5 @@ if (isset($_POST['baddcart'])) {
         'qty' => $jml,
     ];
     $_SESSION['krj'][] = $produk;
-    header('location:index.php?link=transaction');
+    header('location:../');
 }
