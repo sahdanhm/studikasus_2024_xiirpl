@@ -75,12 +75,12 @@
                             </p>
 
 
-                            <div class="">
+                            <div class="d-flex align-items-center">
 
                                 <button href="#" class="btn btn-outline-light">Buy Now</button>
 
 
-                                <a class="btn ms-auto rounded-circle cart-btn" style="width: fit-content; padding:5%;"
+                                <a class="ms-auto rounded-circle cart-btn" style="width: fit-content; padding:5%;"
                                     onclick="jmlCart('<?php echo $tampil['idproduk']; ?>')" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><svg
                                         xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"

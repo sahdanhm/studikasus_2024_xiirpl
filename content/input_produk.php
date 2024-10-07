@@ -14,7 +14,7 @@
 				<div class="card">
 					<div class="card-header bg-info fw-bold text-white">INPUT DATA PRODUK</div>
 					<div class="card-body">
-						<form action="" method="post">
+						<form action="" method="post" enctype="multipart/form-data">
 							<div class="form-floating mb-3">
 								<input type="text" class="form-control" id="floatingInput" name="txtid"
 									placeholder="ID Produk" required>
@@ -38,7 +38,7 @@
 							<div class="mb-3">
 
 								<label for="img" style="font-size:x-small; font-style:italic;">*Image Produk</label>
-								<input type="file" class="form-control" id="img" name="img-pro">
+								<input type="file" class="form-control" id="img-pro" name="img-pro">
 							</div>
 							<button type="submit" class="btn btn-primary text-white" name="bsimpan">Save</button>
 							<button onclick="history.back()" class="btn btn-warning text-white">Cancel</button>
@@ -51,9 +51,12 @@
 							$nm = $_POST['txtnm'];
 							$hrg = $_POST['txtharga'];
 							$stk = $_POST['txtstok'];
-							
 
-							mysqli_query($koneks, "insert into produk values('$id','$nm','$hrg','$stk')");
+							$img = file_get_contents($_FILES['img-pro']['tmp_name']);
+
+
+
+							mysqli_query($koneks, "insert into produk values('$id','$nm','$hrg','$stk','$img')");
 							echo "<meta http-equiv='refresh' content='0;url=index.php?link=t-produk'>";
 						}
 						?>
