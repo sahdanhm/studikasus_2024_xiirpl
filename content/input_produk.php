@@ -52,7 +52,8 @@
 							$hrg = $_POST['txtharga'];
 							$stk = $_POST['txtstok'];
 
-							$img = file_get_contents($_FILES['img-pro']['tmp_name']);
+							$img = addslashes(file_get_contents($_FILES['img-pro']['tmp_name']));
+
 
 
 
