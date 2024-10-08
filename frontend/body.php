@@ -53,7 +53,7 @@
             <h1 class=""># Product</h1>
             <div class="con-card d-flex w-100">
                 <?php
-                include "config/koneksi.php";
+
                 $sql = mysqli_query($koneks, "select*from produk");
                 while ($tampil = mysqli_fetch_array($sql)) {
                     ?>
@@ -115,5 +115,47 @@
 
             </div>
         </div>
+
+
+
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cartCanvasLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="cartCanvasLabel">Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <?php
+                error_reporting(0);
+                foreach ($_SESSION['krj'] as $key => $value) {
+                    $idprocart = $value['id'];
+                    $cartsql = mysqli_query($koneks, "select * from produk where idproduk = '$idprocart'");
+                    $showcart = mysqli_fetch_array($cartsql);
+                    ?>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($showcart['image']) . '"/>'; ?>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+
+                                    <h5 class="card-title"><?= $showcart['namaproduk']; ?></h5>
+                                    <p class="card-text"><?php echo "Rp." . number_format($showcart['hargaproduk'], "0", ",", "."); ?></p>
+                                    <p class="card-text"><small class="text-body-secondary"><label
+                                                for="cartjml"></label><input type="number"
+                                                class="form-control form-control-sm" id="cartjml"></small>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
     </div>
 </div>
