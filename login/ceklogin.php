@@ -2,7 +2,14 @@
 include "../config/koneksi.php";
 $username = $_POST['txtusername'];
 $password = $_POST['txtpassword'];
-$login = mysqli_query($koneks, "select*from petugas where username='$username' and password='$password'");
+// to see if the user pelanggan or petugas
+$loginas = $_POST['loginas'];
+if ($loginas == 'petugas') {
+	$login = mysqli_query($koneks, "select*from petugas where username='$username' and password='$password'");
+} else if ($loginas == 'pelanggan') {
+	$login = mysqli_query($koneks, "select*from pelanggan where username='$username' and password='$password'");
+}
+
 $cek = mysqli_num_rows($login);
 if ($cek > 0) {
 	$data = mysqli_fetch_assoc($login);

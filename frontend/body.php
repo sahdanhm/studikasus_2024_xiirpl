@@ -58,7 +58,7 @@
                 while ($tampil = mysqli_fetch_array($sql)) {
                     ?>
 
-                    <div class="card bg-black text-white border border-white m-1">
+                    <div class="card card-con-each bg-black text-white border border-white m-1">
                         <div class="con-img-pro">
                             <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($tampil['image']) . '" class="img-pro card-image-top" alt="Photo product"/>'; ?>
                         </div>
@@ -99,7 +99,7 @@
             </div>
         </div>
 
-
+        <!-- for input session cart -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
@@ -119,13 +119,13 @@
 
 
 
-
+        <!-- show session cart -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cartCanvasLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="cartCanvasLabel">Cart</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body pb-0">
                 <?php
                 error_reporting(0);
                 foreach ($_SESSION['krj'] as $key => $value) {
@@ -136,24 +136,57 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($showcart['image']) . '"/>'; ?>
+                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($showcart['image']) . '" class="object-fit-cover rounded" style="width:100%; height:100%;"/>'; ?>
 
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
 
                                     <h5 class="card-title"><?= $showcart['namaproduk']; ?></h5>
-                                    <p class="card-text"><?php echo "Rp." . number_format($showcart['hargaproduk'], "0", ",", "."); ?></p>
+                                    <p class="card-text">
+                                        <?php echo "Rp." . number_format($showcart['hargaproduk'], "0", ",", "."); ?>
+                                    </p>
                                     <p class="card-text"><small class="text-body-secondary"><label
-                                                for="cartjml"></label><input type="number"
-                                                class="form-control form-control-sm" id="cartjml"></small>
+                                                for="cartjml">Amount</label><input type="number"
+                                                class="form-control form-control-sm" id="cartjml"
+                                                value="<?= $value['qty'] ?>"></small>
                                     </p>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php }
+                $sum = 0;
+                if (isset($_SESSION['krj'])) {
+                    foreach ($_SESSION['krj'] as $key => $value) {
+                        $sum += $value['price'] * $value['qty'];
+                    }
+                } ?>
+                <form action="content/sell-process.php" method="post" class="sticky-bottom">
+                    <div class="buy-nav bg-white d-flex p-3">
+                        <div class="total flex-grow-1">
+                            <p>Total :</p>
+                            <h5><?= "Rp." . number_format($sum, "0", ",", "."); ?></h5>
+                        </div>
+                        <div class="nav-btns d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-danger">Reset</button>
+                            <button type="button" class="btn btn-sm btn-outline-warning">Refresh</button>
+                        </div>
+
+                        <div class="btn-buy flex-grow-1 d-grid ms-2">
+                            <?php include "content/create-nofaktur.php" ?>
+                            <input type="text" id="nofktr" name="nofktr" value="<?= $nofktr ?>" hidden>
+                            <input type="number" id="total" name="total" value="<?= $sum ?>" hidden>
+                            <!-- idpel belum otomatis -->
+                            <input type="text" name="idpel" id="idpel" value="PL001" hidden>
+
+                            <button type="submit" class="btn btn-sm btn-outline-success">Buy</button>
+
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </div>
 

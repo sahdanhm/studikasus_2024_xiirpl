@@ -89,13 +89,7 @@ if (isset($_SESSION['krj'])) {
 			</div>
 			<div class="left col">
 				<?php
-				$qry = mysqli_query($koneks, 'select max(idpenjualan) as noBesar from penjualan');
-				$dt = mysqli_fetch_array($qry);
-				$nofktr = $dt['noBesar'];
-				$order = (int) substr($nofktr, 3, 3);
-				$order++;
-				$firtLetter = "F";
-				$nofktr = $firtLetter . sprintf("%04s", $order);
+				include "create-nofaktur.php"
 				?>
 				<form action="sell-process.php" method="post" name="formBayar">
 					<label for="nofktr" class="form-label fw-bold">No Faktur</label>

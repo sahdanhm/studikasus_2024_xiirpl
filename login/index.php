@@ -30,7 +30,14 @@ if($pesan === 'gagal'){
                 <button type="submit" class="btn">Log in</button>
             </div>
         </form>
-        <div class="footer mt-3 text-end">
+        <div class="footer mt-3 d-flex align-items-center">
+            <div class="loginas me-auto text-light">
+                <label for="loginas">Log in as</label>
+            <select name="loginas" id="loginas"  class="rounded bg-transparent text-light" style="font-size:0.7em;">
+                <option value="petugas">Petugas</option>
+                <option value="pelanggan" selected>Pelanggan</option>
+            </select>
+            </div>
             <a href="../createaccount/">Don't have an account?</a>
         </div>
     </div>
