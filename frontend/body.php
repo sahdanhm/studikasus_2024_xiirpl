@@ -109,7 +109,7 @@
                 <form action="content/cart.php" method="post">
                     <input type="text" id="produk" name="produk" hidden>
                     <label for="jml" class="form-label">Amount</label>
-                    <input type="text" name="jml" id="jml" class="form-control">
+                    <input type="text" name="jml" id="jml" class="form-control mb-3">
                     <button type="submit" name="baddcart" class="btn btn-primary">Submit</button>
                 </form>
 
